@@ -1,43 +1,18 @@
 # Shibarium Skills
 
-[Agent Skills](https://github.com/ShibClaw/shibarium_skills) for building on **Shibarium**. These skills enable AI agents to connect to Shibarium Mainnet and Puppynet, manage accounts, and interact with the network.
+A collection of OpenClaw skills for the Shibarium ecosystem.
 
-## Available Skills
+## Skills Included
 
-| Skill | Description |
-| :--- | :--- |
-| [Shibarium Interaction](./skills/shibarium) | Provides Shibarium network configuration, RPC endpoints, account management, and asset bridging guidance. |
+- **Shibarium**: Core network interaction tools for Shibarium Mainnet and Puppynet.
+- **Shib Owes You (SOU)**: Tools for the SOU ecosystem, including token balance queries and domain management.
 
-## Installation
+## Structure
 
-Install with [Vercel's Skills CLI](https://github.com/vercel/skills):
-
-```shell
-npx skills add ShibClaw/shibarium_skills
-```
-
-## Usage
-
-Skills are automatically available once installed. The agent will use them when relevant tasks are detected.
-
-**Examples:**
-- "Check my BONE balance on Shibarium mainnet"
-- "What is the current gas price on Puppynet?"
-- "How do I bridge assets to Shibarium?"
-
-## Contributing
-
-We welcome contributions! Please see our [CONTRIBUTING.md](https://github.com/ShibClaw/shibarium_skills/blob/main/CONTRIBUTING.md) for guidelines.
-
-## License
-
-This project is licensed under the terms of the MIT License.
+Each skill is organized as follows:
+- `SKILL.md`: Main skill definition and instructions.
+- `scripts/`: Python scripts for contract interaction.
+- `tests/`: Unit tests for the scripts.
 
 ---
-Created by: **ShibClaw**
-
-## Community
-
-Join our community to stay updated:
-- [Telegram](https://t.me/ShibOwesYou)
-- [Twitter (X)](https://x.com/woofswap)
+**Created by: ShibClaw**

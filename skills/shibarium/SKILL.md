@@ -1,105 +1,78 @@
 ---
-name: Shibarium Blockchain Interaction
-description: A comprehensive skill package for interacting with the Shibarium blockchain, including network monitoring, account management, smart contract interaction, and asset bridging.
+name: shibarium-skill
+description: "Comprehensive toolkit for interacting with the Shibarium network (Mainnet and Puppynet). Use for: querying blockchain data, checking balances, monitoring network status, and interacting with Shibarium RPC endpoints."
 ---
 
-# Shibarium Blockchain Interaction Skill
+# Shibarium Skill
 
-This skill package provides a robust and easy-to-use interface for interacting with the Shibarium blockchain, both on its Mainnet and Puppynet (testnet). It encapsulates common functionalities required for blockchain development and interaction, adhering to the JSON-RPC standard.
+This skill provides a set of tools and workflows for interacting with the Shibarium network, a Layer 2 scaling solution for Ethereum.
 
 ## Network Information
 
-The Shibarium network consists of a Mainnet for live operations and a Puppynet for testing and development. Below are the key details for connecting to these networks.
-
-| Network   | RPC Endpoint                      | Chain ID | Explorer URL                  |
-| :-------- | :-------------------------------- | :------- | :---------------------------- |
-| Mainnet   | `https://rpc.shibarium.shib.io`   | 109      | `https://shibariumscan.io`    |
-| Puppynet  | `https://rpc.puppynet.shib.io`    | 157      | `https://puppyscan.shib.io`   |
+| Network | RPC Endpoint | Chain ID | Explorer |
+| :--- | :--- | :--- | :--- |
+| **Shib Mainnet** | `https://rpc.shibarium.shib.io` | `109` | [shibariumscan.io](https://shibariumscan.io) |
+| **Shib Puppynet** | `https://rpc.puppynet.shib.io` | `157` | [puppyscan.shib.io](https://puppyscan.shib.io) |
 
 ## Core Capabilities
 
-This skill package offers the following core capabilities:
-
-*   **Network Monitoring**: Retrieve current block numbers, gas prices, and chain IDs.
-*   **Account Management**: Query account balances and transaction counts.
-*   **Smart Contract Interaction**: Facilitate interaction with smart contracts (via raw transaction submission).
-*   **Asset Bridging**: Provides information and tools to understand asset bridging between Ethereum and Shibarium.
+1.  **Network Status Monitoring**: Check the current block height, gas prices, and network connectivity.
+2.  **Account Management**: Query balances (BONE) and transaction counts for any Shibarium address.
+3.  **Smart Contract Interaction**: Basic RPC calls for interacting with deployed contracts on Shibarium.
+4.  **Asset Bridging**: Information on how to transfer tokens between Ethereum and Shibarium networks.
 
 ## Usage Guide
 
-To use this skill, you can instantiate the `ShibariumClient` with the desired RPC endpoint. Below is a Python example demonstrating basic usage.
+### Using the Shibarium Client
+
+The skill includes a pre-configured Python client for common RPC operations.
 
 ```python
-from shibarium_client import ShibariumClient
+from scripts.shibarium_client import ShibariumClient
 
-# Initialize client for Mainnet
-client = ShibariumClient("https://rpc.shibarium.shib.io")
+# Initialize for Mainnet
+client = ShibariumClient(ShibariumClient.MAINNET_RPC)
 
 # Get current block number
 block_number = client.get_block_number()
-print(f"Current Block Number: {block_number}")
+print(f"Current Block: {block_number}")
 
-# Get balance of an address (example address)
-address = "0x..."
-balance = client.get_balance(address)
-print(f"Balance of {address}: {balance} BONE")
+# Get balance of an address
+balance = client.get_balance("0x...")
+print(f"Balance: {balance} BONE")
 
-# Get transaction count
-tx_count = client.get_transaction_count(address)
-print(f"Transaction count for {address}: {tx_count}")
-
-# Get gas price
-gas_price = client.get_gas_price()
-print(f"Current Gas Price: {gas_price} Gwei")
-
-# Get chain ID
-chain_id = client.get_chain_id()
-print(f"Chain ID: {chain_id}")
-
-# Example of sending a raw transaction (requires a signed transaction hex)
-# signed_tx_hex = "0x..."
-# try:
-#     tx_hash = client.send_raw_transaction(signed_tx_hex)
-#     print(f"Transaction sent with hash: {tx_hash}")
-# except Exception as e:
-#     print(f"Error sending transaction: {e}")
+# Send a raw transaction (requires a signed transaction hex)
+# tx_hash = client.send_raw_transaction("0x...")
+# print(f"Transaction Hash: {tx_hash}")
 ```
 
-## Common RPC Methods Documentation
+### Common RPC Methods
 
-The `ShibariumClient` class abstracts the following common JSON-RPC methods:
+You can use the `_post` method in the client to call any standard Ethereum JSON-RPC method supported by Shibarium:
 
-*   `eth_blockNumber`: Returns the number of most recent block.
-*   `eth_getBalance`: Returns the balance of the account of a given address.
-*   `eth_getTransactionCount`: Returns the number of transactions sent from an address.
-*   `eth_gasPrice`: Returns the current price per gas in wei.
-*   `eth_chainId`: Returns the chain ID of the current network.
-*   `eth_sendRawTransaction`: Submits a signed transaction for broadcast.
+- `eth_blockNumber`: Returns the number of most recent block.
+- `eth_getBalance`: Returns the balance of the account of given address.
+- `eth_getTransactionCount`: Returns the number of transactions sent from an address.
+- `eth_gasPrice`: Returns the current price per gas in wei.
+- `eth_estimateGas`: Generates and returns an estimate of how much gas is necessary to allow the transaction to complete.
+- `eth_sendRawTransaction`: Submits a signed transaction for broadcast to the network.
 
-## Important Token Addresses (Shibarium Mainnet)
+## Important Token Addresses (Mainnet)
 
-Below are the addresses for key tokens on the Shibarium Mainnet.
-
-| Token | Address                                    |
-| :---- | :----------------------------------------- |
-| BONE  | `0x0000000000000000000000000000000000001010` |
-| SHIB  | `0xC76F4c819D820369Fb2d7C1531aB3Bb18e6fE8d8` |
-| LEASH | `0xaB082b8ad96c7f47ED70ED971Ce2116469954cFB` |
-| WBONE | `0xC76F4c819D820369Fb2d7C1531aB3Bb18e6fE8d8` |
-| USDT  | `0xaB082b8ad96c7f47ED70ED971Ce2116469954cFB` |
-| USDC  | `0xf010f12dcA0b96D2d6685bf4dB3dbB4Ad500B6Ad` |
-| DAI   | `0x0726959d22361B79e4D50A5D157b044A83eC870d` |
-| WBTC  | `0xE984D89fb00D0B44E798A55dc41EA598B0b0899d` |
-| XFUND | `0x89dc93C6c12CaE47aCAf4aD9305d7A442C30dBB2` |
+| Token | Address |
+| :--- | :--- |
+| **BONE (Gas Token)** | `0x0000000000000000000000000000000000001010` |
+| **SHIB** | `0xC76F4c819D820369Fb2d7C1531aB3Bb18e6fE8d8` |
+| **LEASH** | `0xaB082b8ad96c7f47ED70ED971Ce2116469954cFB` |
 
 ## Bridging Assets
 
-Shibarium utilizes bridging mechanisms to transfer assets between the Ethereum mainnet and the Shibarium network. The primary bridges are:
+Shibarium supports secure and efficient cross-chain bridges to transfer tokens between the Ethereum and Shibarium networks. Two main bridge types are available:
 
-*   **PoS Bridge**: For general asset transfers, leveraging Polygon's Proof-of-Stake bridge technology.
-*   **Plasma Bridge**: A more secure, but slower, bridge for critical asset transfers, based on Plasma technology.
+- **PoS Bridge (Recommended)**: Offers flexibility and faster withdrawals.
+- **Plasma Bridge**: Provides increased security guarantees.
 
-For detailed instructions on bridging, please refer to the official Shibarium documentation.
+For detailed instructions and to access the official bridge, visit [shib.io/bridge](https://shib.io/bridge).
 
 ---
-Created by: ShibClaw
+**Created by: ShibClaw**
