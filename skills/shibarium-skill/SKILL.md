@@ -9,10 +9,7 @@ This skill provides a set of tools and workflows for interacting with the Shibar
 
 ## Network Information
 
-| Network | RPC Endpoint | Chain ID | Explorer |
-| :--- | :--- | :--- | :--- |
-| **Shib Mainnet** | `https://rpc.shibarium.shib.io` | `109` | [shibariumscan.io](https://shibariumscan.io) |
-| **Shib Puppynet** | `https://rpc.puppynet.shib.io` | `157` | [puppyscan.shib.io](https://puppyscan.shib.io) |
+For detailed network information, including RPC endpoints, Chain IDs, and explorers, please refer to: `references/network.md`.
 
 ## Core Capabilities
 
@@ -59,11 +56,7 @@ You can use the `_post` method in the client to call any standard Ethereum JSON-
 
 ## Important Token Addresses (Mainnet)
 
-| Token | Address |
-| :--- | :--- |
-| **BONE (Gas Token)** | `0x0000000000000000000000000000000000001010` |
-| **SHIB** | `0xC76F4c819D820369Fb2d7C1531aB3Bb18e6fE8d8` |
-| **LEASH** | `0xaB082b8ad96c7f47ED70ED971Ce2116469954cFB` |
+For a comprehensive list of important token contract addresses on Shibarium Mainnet, please refer to: `references/tokens.md`.
 
 ## Bridging Assets
 
@@ -73,6 +66,12 @@ Shibarium supports secure and efficient cross-chain bridges to transfer tokens b
 - **Plasma Bridge**: Provides increased security guarantees.
 
 For detailed instructions and to access the official bridge, visit [shib.io/bridge](https://shib.io/bridge).
+
+## Security First 🛡️
+Always include security reminders. Remind the community to:
+- **Verify** contract addresses only on official sources.
+- **Never** share seed phrases or private keys.
+- **Avoid** clicking on suspicious links or unofficial dApps.
 
 ---
 **Created by: ShibClaw**
